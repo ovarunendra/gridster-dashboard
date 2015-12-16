@@ -17,24 +17,7 @@
                         <a title="Remove widget" ng-click="remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
                     </div>
                 </div>
-                <div class="box-content" ng-if="widget.exampleData">
-                    <nvd3-pie-chart
-                            id="exampleId"
-                            data="widget.exampleData"
-                            x="xFunction()"
-                            y="yFunction()"
-                            width="{{ widget.width }}"
-                            height="{{ widget.height }}"
-                            showLabels="true"
-                            pieLabelsOutside="false"
-                            showValues="true"
-                            labelType="percent">
-                        <svg></svg>
-                    </nvd3-pie-chart>
-                </div>
-                <div class="box-content" ng-if="!widget.exampleData">
-                    Dummy Content
-                </div>
+                <iframe src="{{ widget.iFrameUrl }}" style="position: relative; height: 90%; width: 100%;"></iframe>
             </div>
         </li>
     </ul>
