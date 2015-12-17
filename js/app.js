@@ -1,4 +1,4 @@
-var app = angular.module('app', ['gridster', 'ui.router', 'ui.bootstrap', 'nvd3ChartDirectives']);
+var app = angular.module('app', ['gridster', 'ui.router', 'ui.bootstrap', 'nvd3ChartDirectives', 'ngSanitize']);
 
 app.config([
     '$stateProvider',

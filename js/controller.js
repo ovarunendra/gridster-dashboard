@@ -1,7 +1,7 @@
 angular.module('app')
 
-    .controller('DashboardCtrl', ['$scope', '$timeout',
-        function($scope, $timeout) {
+    .controller('DashboardCtrl', ['$scope', '$sce',
+        function($scope, $sce) {
             $scope.gridsterOptions = {
                 margins: [20, 20],
                 columns: 4,
@@ -22,34 +22,16 @@ angular.module('app')
                         name: "Widget 1",
                         width: 500,
                         height: 500,
-                        exampleData: [{
-                            key: "One",
-                            y: 5
-                        }, {
-                            key: "Two",
-                            y: 2
-                        }, {
-                            key: "Three",
-                            y: 9
-                        }, {
-                            key: "Four",
-                            y: 7
-                        }, {
-                            key: "Five",
-                            y: 4
-                        }, {
-                            key: "Six",
-                            y: 3
-                        }, {
-                            key: "Seven",
-                            y: 9
-                        }]
+                        iFrameUrl: $sce.trustAsResourceUrl("http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=customer.customer_overview")
+
                     }, {
                         col: 2,
                         row: 1,
-                        sizeY: 1,
-                        sizeX: 1,
-                        name: "Widget 2"
+                        sizeY: 2,
+                        sizeX: 2,
+                        name: "Widget 2",
+                        height: 590,
+                        iFrameUrl: $sce.trustAsResourceUrl("http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=customer.customer_overview")
                     }]
                 },
                 '2': {
@@ -58,15 +40,19 @@ angular.module('app')
                     widgets: [{
                         col: 1,
                         row: 1,
-                        sizeY: 1,
+                        sizeY: 2,
                         sizeX: 2,
-                        name: "Other Widget 1"
+                        name: "Other Widget 1",
+                        height: 590,
+                        iFrameUrl: $sce.trustAsResourceUrl("http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=customer.uptime_analysis")
                     }, {
                         col: 1,
                         row: 3,
-                        sizeY: 1,
-                        sizeX: 1,
-                        name: "Other Widget 2"
+                        sizeY: 2,
+                        sizeX: 2,
+                        name: "Other Widget 2",
+                        height: 590,
+                        iFrameUrl: $sce.trustAsResourceUrl("http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=Version_Upgrade.version_upgrade_report")
                     }]
                 }
             };
@@ -79,7 +65,31 @@ angular.module('app')
                 $scope.dashboard.widgets.push({
                     name: "New Widget",
                     sizeX: 1,
-                    sizeY: 1
+                    sizeY: 1,
+                    width: 500,
+                    height: 500,
+                    exampleData: [{
+                        key: "One",
+                        y: 5
+                    }, {
+                        key: "Two",
+                        y: 2
+                    }, {
+                        key: "Three",
+                        y: 9
+                    }, {
+                        key: "Four",
+                        y: 7
+                    }, {
+                        key: "Five",
+                        y: 4
+                    }, {
+                        key: "Six",
+                        y: 3
+                    }, {
+                        key: "Seven",
+                        y: 9
+                    }]
                 });
             };
 
