@@ -7,6 +7,9 @@ angular.module('app')
                 columns: 4,
                 draggable: {
                     handle: 'div'
+                },
+                resizable: {
+                    enabled: false
                 }
             };
 
@@ -17,11 +20,9 @@ angular.module('app')
                     widgets: [{
                         col: 0,
                         row: 0,
-                        sizeY: 1,
-                        sizeX: 1,
+                        sizeY: 2,
+                        sizeX: 2,
                         name: "Widget 1",
-                        width: 500,
-                        height: 500,
                         iFrameUrl: "http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=customer.customer_overview"
 
                     }, {
@@ -30,7 +31,6 @@ angular.module('app')
                         sizeY: 2,
                         sizeX: 2,
                         name: "Widget 2",
-                        height: 590,
                         iFrameUrl: "http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=customer.customer_overview"
                     }]
                 },
@@ -38,20 +38,18 @@ angular.module('app')
                     id: '2',
                     name: 'Other',
                     widgets: [{
-                        col: 1,
-                        row: 1,
+                        col: 0,
+                        row: 0,
                         sizeY: 2,
                         sizeX: 2,
                         name: "Other Widget 1",
-                        height: 590,
                         iFrameUrl: "http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=customer.uptime_analysis"
                     }, {
-                        col: 1,
-                        row: 3,
+                        col: 2,
+                        row: 1,
                         sizeY: 2,
                         sizeX: 2,
                         name: "Other Widget 2",
-                        height: 590,
                         iFrameUrl: "http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=Version_Upgrade.version_upgrade_report"
                     }]
                 }
@@ -64,50 +62,10 @@ angular.module('app')
             $scope.addWidget = function() {
                 $scope.dashboard.widgets.push({
                     name: "New Widget",
-                    sizeX: 1,
-                    sizeY: 1,
-                    width: 500,
-                    height: 500,
-                    exampleData: [{
-                        key: "One",
-                        y: 5
-                    }, {
-                        key: "Two",
-                        y: 2
-                    }, {
-                        key: "Three",
-                        y: 9
-                    }, {
-                        key: "Four",
-                        y: 7
-                    }, {
-                        key: "Five",
-                        y: 4
-                    }, {
-                        key: "Six",
-                        y: 3
-                    }, {
-                        key: "Seven",
-                        y: 9
-                    }]
+                    sizeX: 2,
+                    sizeY: 2,
+                    iFrameUrl: "http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=Version_Upgrade.version_upgrade_report"
                 });
-            };
-
-
-            $scope.xFunction = function() {
-                return function(d) {
-                    return d.key;
-                };
-            }
-            $scope.yFunction = function() {
-                return function(d) {
-                    return d.y;
-                };
-            }
-            $scope.descriptionFunction = function() {
-                return function(d) {
-                    return d.key;
-                }
             };
 
             $scope.saveDashboard = function () {
