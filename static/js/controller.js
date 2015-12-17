@@ -23,28 +23,7 @@ angular.module('app')
                         width: 500,
                         height: 500,
                         iFrameUrl: $sce.trustAsResourceUrl("http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=customer.customer_overview")
-                        /*exampleData: [{
-                            key: "One",
-                            y: 5
-                        }, {
-                            key: "Two",
-                            y: 2
-                        }, {
-                            key: "Three",
-                            y: 9
-                        }, {
-                            key: "Four",
-                            y: 7
-                        }, {
-                            key: "Five",
-                            y: 4
-                        }, {
-                            key: "Six",
-                            y: 3
-                        }, {
-                            key: "Seven",
-                            y: 9
-                        }]*/
+
                     }, {
                         col: 2,
                         row: 1,
@@ -86,7 +65,31 @@ angular.module('app')
                 $scope.dashboard.widgets.push({
                     name: "New Widget",
                     sizeX: 1,
-                    sizeY: 1
+                    sizeY: 1,
+                    width: 500,
+                    height: 500,
+                    exampleData: [{
+                        key: "One",
+                        y: 5
+                    }, {
+                        key: "Two",
+                        y: 2
+                    }, {
+                        key: "Three",
+                        y: 9
+                    }, {
+                        key: "Four",
+                        y: 7
+                    }, {
+                        key: "Five",
+                        y: 4
+                    }, {
+                        key: "Six",
+                        y: 3
+                    }, {
+                        key: "Seven",
+                        y: 9
+                    }]
                 });
             };
 

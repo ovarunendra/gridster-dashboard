@@ -8,7 +8,7 @@
 </div>
 <div gridster="gridsterOptions">
     <ul>
-        <li gridster-item="widget" ng-repeat="widget in dashboard.widgets">
+        <li gridster-item="widget" ng-repeat="widget in dashboard.widgets track by $index">
             <div class="box" ng-controller="CustomWidgetCtrl">
                 <div class="box-header">
                     <h3>{{ widget.name }}</h3>
@@ -17,7 +17,23 @@
                         <a title="Remove widget" ng-click="remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
                     </div>
                 </div>
-                <iframe src="{{ widget.iFrameUrl }}" style="position: relative; height: 90%; width: 100%;"></iframe>
+                <iframe src="{{ widget.iFrameUrl }}" ng-if="widget.iFrameUrl" style="position: relative; height: 90%; width: 100%;">
+
+                </iframe>
+                <div class="box-content" ng-if="widget.exampleData">
+                    <nvd3-pie-chart
+                            data="widget.exampleData"
+                            x="xFunction()"
+                            y="yFunction()"
+                            width="{{ widget.width }}"
+                            height="{{ widget.height }}"
+                            showLabels="true"
+                            pieLabelsOutside="false"
+                            showValues="true"
+                            labelType="percent">
+                        <svg></svg>
+                    </nvd3-pie-chart>
+                </div>
             </div>
         </li>
     </ul>
