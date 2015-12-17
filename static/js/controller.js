@@ -20,8 +20,8 @@ angular.module('app')
                     widgets: [{
                         col: 0,
                         row: 0,
-                        sizeY: 1,
-                        sizeX: 1,
+                        sizeY: 2,
+                        sizeX: 2,
                         name: "Widget 1",
                         iFrameUrl: "http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=customer.customer_overview"
 
@@ -38,15 +38,15 @@ angular.module('app')
                     id: '2',
                     name: 'Other',
                     widgets: [{
-                        col: 1,
-                        row: 1,
+                        col: 0,
+                        row: 0,
                         sizeY: 2,
                         sizeX: 2,
                         name: "Other Widget 1",
                         iFrameUrl: "http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=customer.uptime_analysis"
                     }, {
-                        col: 1,
-                        row: 3,
+                        col: 2,
+                        row: 1,
                         sizeY: 2,
                         sizeX: 2,
                         name: "Other Widget 2",
