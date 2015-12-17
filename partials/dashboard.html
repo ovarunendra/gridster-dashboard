@@ -1,7 +1,9 @@
 <div class="page-header">
+    <button class="btn btn-success" type="button" ng-click="saveDashboard()">Save Dashboard</button>
+    <button class="btn btn-primary" type="button" ng-click="getDashboard()">Get Saved Dashboard</button>
     <a class="pull-right btn btn-primary" ng-click="addWidget()"><i class="glyphicon glyphicon-plus"></i> Add Widget</a>
     <a class="pull-right btn btn-warning" ng-click="clear()"><i class="glyphicon glyphicon-trash"></i> Clear</a>
-    <h1 style="display: inline-block; width: 200px;">Dashboard</h1>
+    <h2 style="display: inline-block; width: 200px;">Dashboard</h2>
     <select class="form-control" style="width: 150px; margin-bottom: 20px; display:inline-block;" ng-change="changeDashboard()" ng-model="selectedDashboardId" ng-options="d.id as d.name for d in dashboards | object2Array | orderBy:'id'">
     </select>
 
@@ -17,7 +19,7 @@
                         <a title="Remove widget" ng-click="remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
                     </div>
                 </div>
-                <iframe src="{{ widget.iFrameUrl }}" ng-if="widget.iFrameUrl" style="position: relative; height: 90%; width: 100%;">
+                <iframe src="{{ widget.iFrameUrl | sanitizeUrl }}" ng-if="widget.iFrameUrl" style="position: relative; height: 90%; width: 100%;">
 
                 </iframe>
                 <div class="box-content" ng-if="widget.exampleData">
