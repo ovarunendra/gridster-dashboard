@@ -1,7 +1,7 @@
 angular.module('app')
 
-    .controller('DashboardCtrl', ['$scope', '$sce',
-        function($scope, $sce) {
+    .controller('DashboardCtrl', ['$scope', '$window',
+        function($scope, $window) {
             $scope.gridsterOptions = {
                 margins: [20, 20],
                 columns: 4,
@@ -22,7 +22,7 @@ angular.module('app')
                         name: "Widget 1",
                         width: 500,
                         height: 500,
-                        iFrameUrl: $sce.trustAsResourceUrl("http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=customer.customer_overview")
+                        iFrameUrl: "http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=customer.customer_overview"
 
                     }, {
                         col: 2,
@@ -31,7 +31,7 @@ angular.module('app')
                         sizeX: 2,
                         name: "Widget 2",
                         height: 590,
-                        iFrameUrl: $sce.trustAsResourceUrl("http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=customer.customer_overview")
+                        iFrameUrl: "http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=customer.customer_overview"
                     }]
                 },
                 '2': {
@@ -44,7 +44,7 @@ angular.module('app')
                         sizeX: 2,
                         name: "Other Widget 1",
                         height: 590,
-                        iFrameUrl: $sce.trustAsResourceUrl("http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=customer.uptime_analysis")
+                        iFrameUrl: "http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=customer.uptime_analysis"
                     }, {
                         col: 1,
                         row: 3,
@@ -52,7 +52,7 @@ angular.module('app')
                         sizeX: 2,
                         name: "Other Widget 2",
                         height: 590,
-                        iFrameUrl: $sce.trustAsResourceUrl("http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=Version_Upgrade.version_upgrade_report")
+                        iFrameUrl: "http://gbdashboards.glassbeam.com/ArubaNetworks_Dev_408/rdPage.aspx?rdReport=Version_Upgrade.version_upgrade_report"
                     }]
                 }
             };
@@ -108,7 +108,20 @@ angular.module('app')
                 return function(d) {
                     return d.key;
                 }
-            }
+            };
+
+            $scope.saveDashboard = function () {
+                localStorage.setItem("saved", JSON.stringify($scope.dashboards));
+            };
+
+            $scope.getDashboard = function () {
+                if (JSON.parse(localStorage.getItem("saved"))) {
+                    $scope.dashboards = JSON.parse(localStorage.getItem("saved"));
+                    $scope.dashboard = $scope.dashboards[$scope.selectedDashboardId];
+                } else {
+                    $window.alert("No Saved Dashboard!!!")
+                }
+            };
 
             $scope.$watch('selectedDashboardId', function(newVal, oldVal) {
                 if (newVal !== oldVal) {
@@ -202,4 +215,14 @@ angular.module('app')
             }
             return out;
         }
-    });
+    })
+
+    .filter('sanitizeUrl', ['$sce', function($sce) {
+        return function (inputUrl) {
+            var outputUrl = inputUrl;
+            if (inputUrl &&  typeof(inputUrl) === "string") {
+                outputUrl = $sce.trustAsResourceUrl(inputUrl)
+            }
+            return outputUrl;
+        };
+    }]);
